@@ -4,9 +4,17 @@ var router = express.Router();
 var tweetBank = require('../tweetBank');
 
 router.get('/', function (req, res) {
-  var tweets = tweetBank.list();
-  res.render( 'index', { tweets: tweets} );
+  var apple = tweetBank.list();
+  res.render( 'index', { tweets: apple} );
 
+// res.render( 'index', tweets );
+
+});
+
+router.get('/users/:name', function(req, res) {
+  var name = req.params.name;
+  var list = tweetBank.find( {name: name} );
+  res.render( 'index', { tweets: list } );
 });
 
 // router.get("/stylesheets/style.css", function (req, res) {
