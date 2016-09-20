@@ -17,10 +17,18 @@ router.get('/users/:name', function(req, res) {
   res.render( 'index', { tweets: list } );
 });
 
+router.get('/tweets/:id', function(req, res) {
+  var id = Number(req.params.id);
+  var list = tweetBank.find( {tweetid: id} );
+  console.log("Yo");
+  res.render( 'index', { tweets: list } );
+
+});
+
 // router.get("/stylesheets/style.css", function (req, res) {
 // 	res.sendFile("/Users/brandonculp/fullstackAcademy/twitter-js/public/stylesheets/style.css");
-// 
-// 
+//
+//
 // });
 
 

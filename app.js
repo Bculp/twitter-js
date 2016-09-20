@@ -11,7 +11,7 @@ var obj = {
 	 	{ name : "Gandalf" },
 		{ name : "Frodo" },
 		{ name : "Hermione" },
-	 ]	
+	 ]
 };
 
 var routes = require("./routes/");
