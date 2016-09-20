@@ -5,9 +5,6 @@ var volleyball = require("volleyball");
 
 var nunjucks = require('nunjucks');
 
-// var morgan = require("morgan");
-//var title = "An example";
-
 var obj = {
 	 title : "An example",
 	 people : [
@@ -18,19 +15,21 @@ var obj = {
 };
 
 
-var nunjucksRes = nunjucks.render('./views/index.html', obj);
+//specifically for res.render, not for any other res
+nunjucks.configure('views', {noCache : true}); // point nunjucks to the proper directory for templates
+app.set('view engine', 'html'); // have res.render work with html files
+app.engine('html', nunjucks.render); // when giving html files to res.render, tell it to use nunjucks
 
 app.listen(3000, function (){
   console.log("Server is listening...");
 });
 
 app.use(volleyball);
-// app.use(morgan("combined"));
-
 
 app.use("/special", function (req, res, next) {
   console.log("You've reached a special area");
-  res.send(nunjucksRes);
+  res.render("index", obj);
+
   });
 
 app.use(function (req, res, next) {
