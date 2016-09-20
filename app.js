@@ -14,6 +14,7 @@ var obj = {
 	 ]	
 };
 
+var routes = require("./routes/");
 
 //specifically for res.render, not for any other res
 nunjucks.configure('views', {noCache : true}); // point nunjucks to the proper directory for templates
@@ -26,20 +27,29 @@ app.listen(3000, function (){
 
 app.use(volleyball);
 
-app.use("/special", function (req, res, next) {
-  console.log("You've reached a special area");
-  res.render("index", obj);
+app.use("/", routes);
 
-  });
+app.use(express.static("public"));
 
-app.use(function (req, res, next) {
-  console.log(req.method + " " + req.path);
-  next();
-  });
 
-app.get("/", function (request, response, next) {
-  console.log("Welcome home beatch.");
 
-  response.send("Welcome to the show");
 
-});
+
+
+// app.use("/special", function (req, res, next) {
+//   console.log("You've reached a special area");
+//   res.render("index", obj);
+
+//   });
+
+// app.use(function (req, res, next) {
+//   console.log(req.method + " " + req.path);
+//   next();
+//   });
+
+// app.get("/", function (request, response, next) {
+//   console.log("Welcome home beatch.");
+
+//   response.send("Welcome to the show");
+
+// });
