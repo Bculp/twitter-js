@@ -18,7 +18,6 @@ function find (properties) {
 module.exports = { add: add, list: list, find: find };
 
 
-
 var randArrayEl = function(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 };
@@ -34,7 +33,7 @@ var getFakeTweet = function() {
   return "Fullstack Academy is " + randArrayEl(awesome_adj) + "! The instructors are just so " + randArrayEl(awesome_adj) + ". #fullstacklove #codedreams";
 };
 
-
+//hard-coded data for testing various functionality
 data = [ { name: 'Gabriel OLogn',
     content: 'Fullstack Academy is wonderful! The instructors are just so wonderful. #fullstacklove #codedreams' },
   { name: 'Joe Dunderproto',
@@ -59,5 +58,3 @@ data = [ { name: 'Gabriel OLogn',
 for (var i = 0; i < 10; i++) {
   module.exports.add( getFakeName(), getFakeTweet() );
 }
-
-

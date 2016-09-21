@@ -16,7 +16,6 @@ var server = app.listen(3000, function (){
   console.log("Server is listening...");
 });
 
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -24,28 +23,4 @@ var io = socketio.listen(server);
 app.use("/", routes(io));
 app.use(volleyball);
 
-
 app.use(express.static("public"));
-
-
-
-
-
-
-// app.use("/special", function (req, res, next) {
-//   console.log("You've reached a special area");
-//   res.render("index", obj);
-
-//   });
-
-// app.use(function (req, res, next) {
-//   console.log(req.method + " " + req.path);
-//   next();
-//   });
-
-// app.get("/", function (request, response, next) {
-//   console.log("Welcome home beatch.");
-
-//   response.send("Welcome to the show");
-
-// });

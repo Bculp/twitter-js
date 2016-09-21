@@ -8,9 +8,6 @@ module.exports = function (io) {
   router.get('/', function (req, res) {
     var apple = tweetBank.list();
     res.render( 'index', { tweets: apple, showForm: true} );
-
-  // res.render( 'index', tweets );
-
   });
 
   router.get('/users/:name', function(req, res) {
@@ -22,9 +19,7 @@ module.exports = function (io) {
   router.get('/tweets/:id', function(req, res) {
     var id = Number(req.params.id);
     var list = tweetBank.find( {tweetid: id} );
-    console.log("Yo");
     res.render( 'index', { tweets: list } );
-
   });
 
   router.post("/tweets", function (req, res){
@@ -32,9 +27,7 @@ module.exports = function (io) {
     var text = req.body.text;
     tweetBank.add(name, text);
     res.redirect("/");
-
   });
 
   return router;
-
 }

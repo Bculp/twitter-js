@@ -57,10 +57,15 @@ code {
 .content .by {
   font-weight: bold;
 }
-
-#tweetName {
-  font-weight: bold;
-  color: red;
+.col-md-9 {
+  color: black;
   list-style-type: none;
-
+}
+#tweetName a {
+  font-weight: bold;
+  color: black;
+  list-style-type: none;
+}
+#tweetText {
+    margin-bottom: 5px;
 }
