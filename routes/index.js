@@ -1,35 +1,40 @@
-var express = require('express');
-var router = express.Router();
-// could use one line instead: var router = require('express').Router();
-var tweetBank = require('../tweetBank');
+module.exports = function (io) {
 
-router.get('/', function (req, res) {
-  var apple = tweetBank.list();
-  res.render( 'index', { tweets: apple} );
+  var express = require('express');
+  var router = express.Router();
+  // could use one line instead: var router = require('express').Router();
+  var tweetBank = require('../tweetBank');
 
-// res.render( 'index', tweets );
+  router.get('/', function (req, res) {
+    var apple = tweetBank.list();
+    res.render( 'index', { tweets: apple, showForm: true} );
 
-});
+  // res.render( 'index', tweets );
 
-router.get('/users/:name', function(req, res) {
-  var name = req.params.name;
-  var list = tweetBank.find( {name: name} );
-  res.render( 'index', { tweets: list } );
-});
+  });
 
-router.get('/tweets/:id', function(req, res) {
-  var id = Number(req.params.id);
-  var list = tweetBank.find( {tweetid: id} );
-  console.log("Yo");
-  res.render( 'index', { tweets: list } );
+  router.get('/users/:name', function(req, res) {
+    var name = req.params.name;
+    var list = tweetBank.find( {name: name} );
+    res.render( 'index', { tweets: list, showForm: true, name: name } );
+  });
 
-});
+  router.get('/tweets/:id', function(req, res) {
+    var id = Number(req.params.id);
+    var list = tweetBank.find( {tweetid: id} );
+    console.log("Yo");
+    res.render( 'index', { tweets: list } );
 
-// router.get("/stylesheets/style.css", function (req, res) {
-// 	res.sendFile("/Users/brandonculp/fullstackAcademy/twitter-js/public/stylesheets/style.css");
-//
-//
-// });
+  });
 
+  router.post("/tweets", function (req, res){
+    var name = req.body.name;
+    var text = req.body.text;
+    tweetBank.add(name, text);
+    res.redirect("/");
 
-module.exports = router;
+  });
+
+  return router;
+
+}
